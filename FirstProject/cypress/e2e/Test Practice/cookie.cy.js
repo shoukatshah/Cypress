@@ -21,7 +21,7 @@ context('Cookies', () => {
 
     it.only('Get browser cookies', () => {
         cy.get('#getCookies .set-a-cookie').click()
-        cy.getCookies().should('have.length',1)
+        cy.getCookies().should('have.length',2)
     })
   
   })
