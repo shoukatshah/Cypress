@@ -18,6 +18,11 @@ context('Cookies', () => {
       // cy.getCookie() yields a cookie object
       cy.getCookie('token').should('have.property', 'value', '123ABC')
     })
+
+    it.only('Get browser cookies', () => {
+        cy.get('#getCookies .set-a-cookie').click()
+        cy.getCookies().should('have.length',1)
+    })
   
   })
   
