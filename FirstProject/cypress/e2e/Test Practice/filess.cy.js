@@ -13,7 +13,7 @@ describe('Files', () => {
 
     it('Fixture', () => {
         cy.intercept('GET','https://jsonplaceholder.cypress.io/comments/1', {fixture:'example.json'}).as('getComment')
-        cy.get('.fixture-btn').click()
+        cy.get('.fixture-btns').click()
         cy.wait('@getComment').its('response.body').then(($resp) => {
             expect($resp).to.have.property('name').and.include(itsName)
             expect($resp).to.have.property('email').and.include(itsEmail)
@@ -23,4 +23,10 @@ describe('Files', () => {
         
 
     })
+
+    it("Uncaught Exception - Due to application error", () => {
+        cy.visit("index.html", {failOnStatusCode: false});
+        cy.get("button#error").click();
+        cy.wait(1000);
+        })
 })
