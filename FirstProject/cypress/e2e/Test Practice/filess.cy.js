@@ -29,4 +29,32 @@ describe('Files', () => {
         cy.get("button#error").click();
         cy.wait(1000);
         })
+
+        it('cy.readFile() - read file contents', () => {
+            cy.readFile(Cypress.config('configFile')).then((config) => {
+              expect(config).to.be.an('string')
+            })
+            cy.readFile('cypress/hello.json').its('name').should('eq','Eliza')
+            .its('email').should('eq','eliza@example.com')
+        })
+        it.only('cy.writeFile() - write to a file', () => {
+            cy.request('https://jsonplaceholder.cypress.io/users')
+              .then((response) => {
+                cy.writeFile('cypress/fixtures/users.json', response.body)
+              })
+        
+            cy.fixture('users').should((users) => {
+              expect(users[0].name).to.exist
+            })
+        
+            cy.writeFile('cypress/fixtures/profile.json', {
+              id: 8739,
+              name: 'Jane',
+              email: 'jane@example.com',
+            })
+        
+            cy.fixture('profile').should((profile) => {
+              expect(profile.name).to.eq('Jane')
+            })
+          })
 })
