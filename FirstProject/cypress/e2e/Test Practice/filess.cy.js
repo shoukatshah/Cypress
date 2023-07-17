@@ -37,7 +37,7 @@ describe('Files', () => {
             cy.readFile('cypress/hello.json').its('name').should('eq','Eliza')
             .its('email').should('eq','eliza@example.com')
         })
-        it.only('cy.writeFile() - write to a file', () => {
+        it('cy.writeFile() - write to a file', () => {
             cy.request('https://jsonplaceholder.cypress.io/users')
               .then((response) => {
                 cy.writeFile('cypress/fixtures/users.json', response.body)
@@ -57,4 +57,6 @@ describe('Files', () => {
               expect(profile.name).to.eq('Jane')
             })
           })
+        
+          
 })
