@@ -16,13 +16,13 @@
 // Import commands.js using ES2015 syntax:
 import './commands'
 
-Cypress.on('fail', (err, runnable) => {
-    console.log('Test case got fail because of', err.message)
-    console.log('runnable', runnable)
-    if(err.message.includes('Things went bad')){
-        return false
-    }
-})
+// Cypress.on('fail', (err, runnable) => {
+//     console.log('Test case got fail because of', err.message)
+//     console.log('runnable', runnable)
+//     if(err.message.includes('Things went bad')){
+//         return false
+//     }
+// })
 // Cypress.on('fail', (e, runnable) => {
 //     console.log('Test case got fail because of', e.message)
 //     if(e.name === 'AssertionError' && !e.message.includes("Timed out retrying after 4000ms: Expected to find element but never found it.")){
